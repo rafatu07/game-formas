@@ -10,6 +10,7 @@
     "phaser": "^3.70.0"
   },
   "devDependencies": {
+    "@parcel/transformer-raw": "^2.15.2",
     "@types/node": "^20.11.19",
     "child_process": "^1.0.2",
     "fs": "^0.0.1-security",

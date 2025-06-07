@@ -1,0 +1,93 @@
+/* Estilos para o jogo */
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(to bottom, #000, #111);
+    font-family: 'Arial', sans-serif;
+    overflow: hidden;
+    color: #fff;
+}
+
+#game {
+    position: relative;
+    box-shadow: 0 0 30px rgba(0, 255, 255, 0.3);
+    border-radius: 5px;
+}
+
+canvas {
+    border-radius: 5px;
+    position: relative;
+}
+
+/* Efeito de scanline para aparência retro */
+#game::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(transparent 50%, rgba(0, 0, 0, 0.1) 50%);
+    background-size: 100% 4px;
+    pointer-events: none;
+    z-index: 10;
+    opacity: 0.3;
+}
+
+/* Efeito de ruído visual sutil */
+#game::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAECklEQVR4Xu2ZUW7cMAxE5wK9/wX7t71AT1DfIHaCGttkHLsJJYqUZ2QBW7SRQfc9jiiKpP59fX39eXt7+/P7vef3+rzve+fv8/n8Ph6P9/fj8Xj/Hv/GZ3wnvhM/4/v4/u3tLf6Oz+v3+BvfxTFxrI/VY/I4d8fLY+OcPnY9tn8/v7dPwDg5TjwWoAXoAnpP4PVkQ4Z+LoAXwAXwv4CQSCZAJkAmQCbAF3zXDhACIgAiIAIgAiIAIuBLdAOKAEVABEAERABEgLOCFAIRgAiQCZAJkAl8ARMIAbCIQASAAEQACEAEOO2eCdZMQJkAMgFkAsgEkAnQ3B8TFAERgAiACEAEIAKYQCUQARABiABEACIAEWAEKIGYQCUQE6gEYgKVQJjA/fZYJpBMgEwAmQCZAJkAMgGuekLIBJAJIBNAJoBMAJkAZ30oQgQgAhABiABEACKACEAEIAIQAYgARAAiQAQQAYgARAAiABGACDgbB3QE5ATnDc4bnDc4b/AvMm8ImQAyAWQCyASQCSATwM/EuCc4b3De4LzBeYPzBru81T3BeYN/kXnwuCc4b3De4LzBeYPzBvucVSZAJoBMAJkAMgFkAsgEuOoJIRNAJoBMAJkAMgFkApzOnyZuBOQEZwRnBGcEZwRnBGcE/yAjOCM4IzgjOCM4I5gRnBGcEfxTtsMzgjOCM4Izgo3gjODH43HO90QYAU6zGMGSQElgYQQbwYxgI9gIPkdwEVAEFAFFQBFQBLgUVgSAAEQACEAEgABEgNvjIKAIKAKKgCKgCHBDqAgAAYgAEIAIAAGIABCAawJ3CQQBIAAQAAgABAAC5nBvn0AjwG0xI9gINoKNYCPYCDaCjWAj2Aj+j3GwEWwEG8FGsBFsBBvBRrARvL9lZgQbwUawEWwEG8FGsBG8xQj2PIARbAQbwUawEWwEG8FGsBG8eQQbwUbwD9kgwQgmH+9XNIKNYCOYKzuN4CLACCYXRYARbAQbwRzSRcDm7XGMABCACAABgAAQAAJAAJcWQQAIAAGAABAAAgYBuCVWBAwCQAAgAAQAAkAAI0MJLAGBABDQCAAB4wLpqhFcBBQBRUARUAQUAUUAVwlBQBFQBBQBRUARUAQUAUUAnxNcBBQBRUARUAQUAUWAWwJFQBFQBBQBRUARUAQUAUVAEVAEFAFFQBHgBkkRUAQUAUVAEVAEDAKKgDJBBEAEQARABEAEQARABEAEQARABEAEQARABDh4EQEiACIAIgAiACIAIgAiACIAImByEMIb7MZA3mBnhfIG49+8wbnBeYNzO9zXZO8N/gUP5pG98Ky/7wAAAABJRU5ErkJggg==");
+    background-size: cover;
+    opacity: 0.02;
+    pointer-events: none;
+    z-index: 11;
+    animation: noise 0.5s infinite;
+}
+
+/* Efeito de brilho ao redor do canvas */
+#game::before {
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    right: -5px;
+    bottom: -5px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
+    z-index: -1;
+    opacity: 0;
+    animation: pulse 2s infinite alternate;
+}
+
+@keyframes pulse {
+    from {
+        opacity: 0.2;
+    }
+    to {
+        opacity: 0.6;
+    }
+}
+
+@keyframes noise {
+    0% { transform: translateX(0); }
+    50% { transform: translateX(1px); }
+    100% { transform: translateX(0); }
+}
+
+/* Estilos para telas menores */
+@media (max-width: 800px) {
+    #game {
+        width: 100%;
+        height: auto;
+    }
+} 
